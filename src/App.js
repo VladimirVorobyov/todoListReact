@@ -1,34 +1,23 @@
-import { useState } from 'react';
 import './index.css';
-import { nanoid } from 'nanoid';
 import ListTask from './component/ListTasks/ListTask';
 import NewTask from './component/NewTask/NewTask';
+import { useDispatch} from 'react-redux';
+import { addTaskAction, filterTaskAction,doneTaskAction } from './redux/setTask';
 
 function App() {
-  const [task,setTask] = useState([
-    {id:nanoid(), title:"HTML", done:true},
-    {id:nanoid(), title:"CSS", done:true},
-    {id:nanoid(), title:"JS", done:false},
-    {id:nanoid(), title:"React", done:false},
-  ])
-
+  const dispatch = useDispatch();
   const createNewTask = (newElem) => {
-    setTask([...task,newElem])
+    dispatch(addTaskAction(newElem))
   }
-
   const onFilter = (currentEl)=>{
-    setTask(task.filter((el)=>el.id !== currentEl.id))
+    dispatch(filterTaskAction(currentEl.id))
   }
   const onActiv = (currentEl)=>{
-    setTask(task.map((el)=>{
-      if(el.id === currentEl.id){
-        el.done = true}
-        return el
-    }))
+    dispatch(doneTaskAction(currentEl.id))
   }
   return (
     <div className="App">
-      <ListTask task={task} onDelete={onFilter} onDone={onActiv} />
+      <ListTask  onDelete={onFilter} onDone={onActiv} />
       <NewTask create ={createNewTask} />
     </div>
   );
