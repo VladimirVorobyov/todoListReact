@@ -1,7 +1,7 @@
 import classes from "./NewTask.module.css";
 import { nanoid } from "nanoid";
 import { useDispatch, useSelector } from "react-redux";
-import { valueAction,removeAction } from "../../redux/valueReducer";
+import { valueAction,removeAction } from "../../store/newTask/actions";
 export default function NewTask({create}) {
   const dispatch = useDispatch();
   const value = useSelector(state => state.value.value)

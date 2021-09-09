@@ -2,7 +2,7 @@ import './index.css';
 import ListTask from './component/ListTasks/ListTask';
 import NewTask from './component/NewTask/NewTask';
 import { useDispatch} from 'react-redux';
-import { addTaskAction, filterTaskAction,doneTaskAction } from './redux/setTask';
+import { addTaskAction, filterTaskAction,doneTaskAction } from './store/app/actions';
 
 function App() {
   const dispatch = useDispatch();

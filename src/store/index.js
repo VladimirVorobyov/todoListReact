@@ -1,6 +1,6 @@
 import { createStore, combineReducers } from 'redux';
-import { setTask } from './setTask';
-import { valueReducer } from './valueReducer';
+import { setTask } from './app/reducer';
+import { valueReducer } from './newTask/reducer';
 
 const rootReducer = combineReducers({
   tasks: setTask,
