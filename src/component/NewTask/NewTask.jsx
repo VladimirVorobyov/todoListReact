@@ -2,9 +2,13 @@ import classes from "./NewTask.module.css";
 import { nanoid } from "nanoid";
 import { useDispatch, useSelector } from "react-redux";
 import { valueAction,removeAction } from "../../store/newTask/actions";
-export default function NewTask({create}) {
+import { addTaskAction } from '../../store/app/actions';
+export default function NewTask() {
   const dispatch = useDispatch();
-  const value = useSelector(state => state.value.value)
+  const value = useSelector(state => state.value.value);
+  const createNewTask = (newElem) => {
+    dispatch(addTaskAction(newElem))
+  }
   
   const onChange = (e) => {
     dispatch(valueAction(e.target.value))
@@ -12,7 +16,7 @@ export default function NewTask({create}) {
   const addTask = () =>{
     if(value.length>0){
       const NewTaskElem = {id:nanoid() ,title:value, done:false};
-      create(NewTaskElem);
+      createNewTask(NewTaskElem);
       dispatch(removeAction(''));
     }
   }
